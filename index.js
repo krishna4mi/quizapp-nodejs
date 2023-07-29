@@ -2,7 +2,7 @@ const express = require('express');
 const { questions } = require('./questions');
 const cors = require('cors');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 
@@ -22,14 +22,18 @@ app.get('/', function (req, res) {
 })
 app.get('/getQuiz', function (req, res) {
     const count = req.query.questionCount;
-    if(isNaN(Number(count))){
-        throw new Error('Enter count value')
+    if(isNaN(Number(count)) ){
+        res.json({status:false, message:"Please enter valid number"})
+        return;    
+    }else if(Number(count) <5 || Number(count) >15){
+    res.json({status:false, message:"Please enter value betwen 5 and 15"})
+    return;    
     }
     let randomQuesitons = generateRandomNumbers(10).map(x=> {
         return questions[x];
     })
 
-    res.json(randomQuesitons)
+    res.json({status:true, result:randomQuesitons})
 })
 
 app.listen(PORT, function () {
