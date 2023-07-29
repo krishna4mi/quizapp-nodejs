@@ -16,6 +16,10 @@ function generateRandomNumbers(count) {
     }
     return arr;
 }
+
+app.get('/', function (req, res) {
+    res.json({massage:"Health check app is running succefully",})
+})
 app.get('/getQuiz', function (req, res) {
     const count = req.query.questionCount;
     if(isNaN(Number(count))){
