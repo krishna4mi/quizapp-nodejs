@@ -11,7 +11,7 @@ app.use(cors());
 function generateRandomNumbers(count) {
     var arr = [];
     while (arr.length < count) {
-        var r = Math.floor(Math.random() * questions.length) + 1;
+        var r = Math.floor(Math.random() * questions.length);
         if (arr.indexOf(r) === -1) arr.push(r);
     }
     return arr;
