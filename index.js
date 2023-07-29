@@ -29,7 +29,7 @@ app.get('/getQuiz', function (req, res) {
     res.json({status:false, message:"Please enter value betwen 5 and 15"})
     return;    
     }
-    let randomQuesitons = generateRandomNumbers(10).map(x=> {
+    let randomQuesitons = generateRandomNumbers(count).map(x=> {
         return questions[x];
     })
 
